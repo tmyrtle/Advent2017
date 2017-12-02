@@ -6,4 +6,5 @@
   :dependencies [[org.clojure/clojure "1.9.0-RC2"]]
   :main ^:skip-aot advent2017.core
   :target-path "target/%s"
+  :test-paths ["src"]
   :profiles {:uberjar {:aot :all}})
