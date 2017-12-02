@@ -8,21 +8,36 @@
   (let [digits-str (string/trim-newline (slurp (io/resource INPUT-FILE)))]
     (mapv (comp read-string str) digits-str)))
 
-(defn captcha [digits]
-  (let [shifted-digits (rest (cycle digits))]
+(defn captcha1 [digits]
+  (captcha digits 1))
+
+(defn captcha2 [digits]
+  (captcha digits (/ (count digits) 2)))
+
+(defn captcha [digits shift]
+  (let [shifted-digits (nthrest (cycle digits) shift)]
     (->> (map vector digits shifted-digits)
          (filter #(apply = %))
          (map first)
          (reduce +))))
 
-(comment
-  (captcha [])
-  (captcha [0])
-  (captcha [0 0])
-  (captcha [1 1])
-  (captcha [1 1 2 2])
-  (captcha (load-input))
-  )
-
 (defn run []
-  (captcha (load-input)))
+  [(captcha1 (load-input))
+   (captcha2 (load-input))])
+
+(comment
+  (run)
+
+  (captcha1 [])
+  (captcha1 [0])
+  (captcha1 [0 0])
+  (captcha1 [1 1])
+  (captcha1 [1 1 2 2])
+  (captcha1 (load-input))
+
+  (captcha2 [])
+  (captcha2 [1 1])
+  (captcha2 [1 1 2 2])
+  (captcha2 [1 2 1 2])
+  (captcha2 (load-input))
+  )
