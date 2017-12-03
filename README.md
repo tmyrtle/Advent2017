@@ -1,10 +1,10 @@
-# advent2017
+# Advent of Code 2017
 
-Tim's solutions to Advent of Code 2017 using Clojure.
+Tim's solutions to [adventofcode.com](Advent of Code 2017) using Clojure.
 
 ## Usage
 
-Run the code in the REPL.
+Just run the code in the REPL.
 
 ```
 (in-ns 'advent2017.day01')
